@@ -24,4 +24,15 @@ module.exports = function (app) {
     .get(userCtrl.detail)
     .put(userCtrl.update)
     .delete(userCtrl.delete);
+
+  let productsCtrl = require("./controllers/ProductsController");
+
+  // todoList Routes
+  app.route("/products").get(productsCtrl.get).post(productsCtrl.store);
+
+  app
+    .route("/products/:productId")
+    .get(productsCtrl.detail)
+    .put(productsCtrl.update)
+    .delete(productsCtrl.delete);
 };
