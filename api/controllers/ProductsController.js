@@ -13,10 +13,10 @@ module.exports = {
     });
   },
   detail: (req, res) => {
-    let sql = "SELECT * FROM products WHERE id = ?";
+    let sql = "SELECT * FROM products WHERE page = ?";
     db.query(sql, [req.params.productId], (err, response) => {
       if (err) throw err;
-      res.json(response[0]);
+      res.json(response);
     });
   },
   update: (req, res) => {
