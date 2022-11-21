@@ -13,8 +13,15 @@ module.exports = {
     });
   },
   detail: (req, res) => {
-    let sql = "SELECT * FROM user WHERE email = ?";
+    let sql = "SELECT * FROM user WHERE id = ?";
     db.query(sql, [req.params.userId], (err, response) => {
+      if (err) throw err;
+      res.json(response[0]);
+    });
+  },
+  email: (req, res) => {
+    let sql = "SELECT * FROM user WHERE email = ?";
+    db.query(sql, [req.params.userEmail], (err, response) => {
       if (err) throw err;
       res.json(response[0]);
     });

@@ -13,8 +13,29 @@ module.exports = {
     });
   },
   detail: (req, res) => {
-    let sql = "SELECT * FROM products WHERE page = ?";
+    let sql = "SELECT * FROM products WHERE id = ?";
     db.query(sql, [req.params.productId], (err, response) => {
+      if (err) throw err;
+      res.json(response);
+    });
+  },
+  page: (req, res) => {
+    let sql = "SELECT * FROM products WHERE page = ?";
+    db.query(sql, [req.params.productPage], (err, response) => {
+      if (err) throw err;
+      res.json(response);
+    });
+  },
+  maker: (req, res) => {
+    let sql = "SELECT * FROM products WHERE makers = ? LIMIT 10";
+    db.query(sql, [req.params.productMaker], (err, response) => {
+      if (err) throw err;
+      res.json(response);
+    });
+  },
+  search: (req, res) => {
+    let sql = "SELECT * FROM products WHERE name LIKE ?";
+    db.query(sql, ["%" + req.params.productSearch + "%"], (err, response) => {
       if (err) throw err;
       res.json(response);
     });
