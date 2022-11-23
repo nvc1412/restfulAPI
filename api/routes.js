@@ -3,9 +3,8 @@
 const UserController = require("./controllers/UserController");
 
 module.exports = function (app) {
+  // todoList Routes Users
   let userCtrl = require("./controllers/UserController");
-
-  // todoList Routes
   app.route("/user").get(userCtrl.get).post(userCtrl.store);
 
   app
@@ -16,9 +15,8 @@ module.exports = function (app) {
 
   app.route("/user/email/:userEmail").get(userCtrl.email);
 
+  // todoList Routes Products
   let productsCtrl = require("./controllers/ProductsController");
-
-  // todoList Routes
   app.route("/products").get(productsCtrl.get).post(productsCtrl.store);
 
   app
@@ -31,4 +29,8 @@ module.exports = function (app) {
 
   app.route("/products/maker/:productMaker").get(productsCtrl.maker);
   app.route("/products/search/:productSearch").get(productsCtrl.search);
+
+  // todoList Routes Bills
+  let billCtrl = require("./controllers/BillController");
+  app.route("/bill").get(billCtrl.get).post(billCtrl.store);
 };
